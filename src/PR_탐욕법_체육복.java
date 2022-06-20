@@ -1,41 +1,32 @@
-import java.util.Arrays;
-import java.util.HashMap;
+class Solution {
+    public int solution(int n, int[] lost, int[] reserve) {
+        int[] people = new int[n];
+        int answer = n;
 
-class Solution{
-    public int solution(int n, int[] lost, int[] reverse){
-        HashMap<Integer, Boolean> hm = new HashMap<>();
-        int result = n;
-        Arrays.sort(lost);
-        Arrays.sort(reverse);
+        for (int l : lost)
+            people[l-1]--;
+        for (int r : reserve)
+            people[r-1]++;
 
-        for(int i = 1; i <= n; i++){
-            hm.put(i, true);
-        }
-        for(int i:lost){
-            hm.put(i, false);
-            result--;
-        }
-        for(int i : reverse){
-            if(!hm.get(i)){
-                result++;
-                hm.put(i, true);
-                continue;
-            }
-            if(hm.get(i-1) != null && !hm.get(i-1)){
-                result++;
-                hm.put(i-1, true);
-            }else if(hm.get(i+1) != null && !hm.get(i+1)){
-                result++;
-                hm.put(i+1, true);
+        for (int i = 0; i < people.length; i++) {
+            if(people[i] == -1) {
+                if(i-1>=0 && people[i-1] == 1) {
+                    people[i]++;
+                    people[i-1]--;
+                }else if(i+1< people.length && people[i+1] == 1) {
+                    people[i]++;
+                    people[i+1]--;
+                }else
+                    answer--;
             }
         }
-        return result;
+        return answer;
     }
 
     public static void main(String[] args){
-        int n = 4;
-        int[] lost = {1,2,3,4};
-        int[] reverse = {2,3};
+        int n = 5;
+        int[] lost = {2,4};
+        int[] reverse = {1,3,5};
 
         Solution sol = new Solution();
         System.out.println(sol.solution(n, lost, reverse));
