@@ -5,7 +5,7 @@ class FunctionDevelopment {
     public int[] functionDevelopment(int[] progresses, int[] speeds) {
         int day = 1;
         int job = 0;
-
+//
         List<Integer> list = new ArrayList<>();
         while (true) {
             int gropCount = 0;
