@@ -6,27 +6,27 @@ import java.util.Queue;
 class CrossingTruck{
     public int crossingTruck(int bridge_length, int weight, int[] truck_weights){
         Queue<Integer> queue = new LinkedList<>();
-        queue.add(0);
-        int time = 0;
-        int point = 0;
-        int currentWeight = 0;
-        int arrivedCount = 0;
-        // 7, 4, 5, 6
-        while(arrivedCount < truck_weights.length-1){
-            if(!queue.isEmpty()) {
-                int pollValue = queue.poll();
-                if (pollValue != 0) {
-                    currentWeight -= pollValue;
-                    arrivedCount++;
-                }
-            }
-            if(currentWeight + truck_weights[point] > weight){
-                queue.add(0);
-            }else{
-                queue.add(truck_weights[point]);
-                currentWeight += truck_weights[point];
 
-                point++;
+        // 처음 트럭이 다리위로 올라갈 때 맨 끝에 서있어야 하기 때문에 큐의 나머지 공간에 0을 집어 넣음
+        for(int i = 0; i < bridge_length; i++){
+            queue.offer(0);
+        }
+        int time = 0;
+        int currentWeight = 0;
+        int point = 0;
+        // 7, 4, 5, 6
+        while(!queue.isEmpty()){
+            currentWeight -= queue.poll();
+
+            if(point < truck_weights.length){
+                if(truck_weights[point] + currentWeight <= weight){
+                    queue.offer(truck_weights[point]);
+                    currentWeight += truck_weights[point];
+                    point++;
+                }
+                else{
+                    queue.offer(0);
+                }
             }
 
             time++;
