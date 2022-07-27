@@ -1,11 +1,11 @@
 package Java.Programmers.Lv2;
 
 class VisitedLength{
-    boolean[][] widthDp;
-    boolean[][] heightDp;
+    boolean[][] widthV;
+    boolean[][] heightV;
     public int visitedLength(String dirs){
-        widthDp = new boolean[10][11];
-        heightDp = new boolean[11][10];
+        widthV = new boolean[10][11];
+        heightV = new boolean[11][10];
         int count = 0;
         int[] pos = {5, 5};
 
@@ -17,8 +17,8 @@ class VisitedLength{
                     if(pos[1] == 0){
                         break;
                     }
-                    if(!heightDp[pos[0]][pos[1]-1]){
-                        heightDp[pos[0]][pos[1]-1] = true;
+                    if(!heightV[pos[0]][pos[1]-1]){
+                        heightV[pos[0]][pos[1]-1] = true;
                         count++;
                     }
                     pos[1]--;
@@ -27,8 +27,8 @@ class VisitedLength{
                     if(pos[1] == 10){
                         break;
                     }
-                    if(!heightDp[pos[0]][pos[1]]){
-                        heightDp[pos[0]][pos[1]] = true;
+                    if(!heightV[pos[0]][pos[1]]){
+                        heightV[pos[0]][pos[1]] = true;
                         count++;
                     }
                     pos[1]++;
@@ -37,8 +37,8 @@ class VisitedLength{
                     if(pos[0] == 0){
                         break;
                     }
-                    if(!widthDp[pos[0]-1][pos[1]]){
-                        widthDp[pos[0]-1][pos[1]] = true;
+                    if(!widthV[pos[0]-1][pos[1]]){
+                        widthV[pos[0]-1][pos[1]] = true;
                         count++;
                     }
                     pos[0]--;
@@ -47,8 +47,8 @@ class VisitedLength{
                     if(pos[0] == 10){
                         break;
                     }
-                    if(!widthDp[pos[0]][pos[1]]){
-                        widthDp[pos[0]][pos[1]] = true;
+                    if(!widthV[pos[0]][pos[1]]){
+                        widthV[pos[0]][pos[1]] = true;
                         count++;
                     }
                     pos[0]++;
