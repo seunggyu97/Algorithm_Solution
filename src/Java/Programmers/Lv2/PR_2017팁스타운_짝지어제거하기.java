@@ -1,24 +1,24 @@
 package Java.Programmers.Lv2;
 
-class RemoveCouple {
-    public int removecouple(String s) {
-        while(s.length() > 0){
-            int flag = 0;
-            for(int i = 0; i<s.length()-1; i++){
-                char a = s.charAt(i);
-                char b = s.charAt(i+1);
-                if(a == b){
-                    StringBuilder sb = new StringBuilder(s);
-                    sb.deleteCharAt(i);
-                    sb.deleteCharAt(i);
-                    s = sb.toString();
-                    flag = 1;
-                    break;
-                }
+import java.util.Stack;
+
+class RemoveCouple
+{
+    public int removecouple(String s)
+    {
+        int answer = -1;
+        Stack<Character> stack = new Stack<>();
+        for (int i=0; i < s.length(); i++){
+            char c = s.charAt(i);
+            if(!stack.isEmpty() && stack.peek() == c){
+                stack.pop();
+            }else{
+                stack.push(c);
             }
-            if(flag == 0) return 0;
+
         }
-        return 1;
+        answer = (stack.size() == 0) ? 1 : 0;
+        return answer;
     }
 
     public static void main(String[] args) {
