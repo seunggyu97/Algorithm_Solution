@@ -20,7 +20,7 @@ class NAndM_4{
         M = Integer.parseInt(st.nextToken());
 
         arr = new int[M];
-        dfs(0, 0);
+        dfs(0, 1);
         System.out.println(sb);
     }
 
