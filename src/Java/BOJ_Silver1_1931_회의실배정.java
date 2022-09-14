@@ -25,22 +25,16 @@ class BOJ_Silver1_1931 {
         Arrays.sort(meetings, new Comparator<int[]>() {
             @Override
             public int compare(int[] o1, int[] o2) {
-                return (o1[1]-o1[0]) - (o2[1]-o2[0]);
+                if(o1[1] == o2[1]) return o1[0]-o2[0];
+                return o1[1] - o2[1];
             }
         });
 
-        int[] time = new int[24];
         int count = 0;
-        for(int[] arr : meetings){
-            boolean flag = false;
-            for(int i = arr[0]; i<arr[1]; i++){
-                if(time[i] == 1) flag = true;
-            }
-            if(time[arr[0]] == 0 && !flag){
-
-                for(int i = arr[0]; i < arr[1]; i++){
-                    time[i] = 1;
-                }
+        int prevEndTime = 0;
+        for(int i = 0; i < N; i++){
+            if(prevEndTime <= meetings[i][0]){
+                prevEndTime = meetings[i][1];
                 count++;
             }
         }
