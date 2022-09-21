@@ -3,6 +3,7 @@ package Java.Programmers.Lv2;
 class NextBigNum{
     public int nextBigNum(int n){
         int count = checkNum(n);
+
         for(int i = n + 1;;i++){
             if(checkNum(i) == count) return i;
         }
