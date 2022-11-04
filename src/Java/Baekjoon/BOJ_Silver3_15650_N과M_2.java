@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.util.StringTokenizer;
 import java.io.IOException;
 
-class Main{
+class NAndM_2{
     static int[] arr;
     static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException{
