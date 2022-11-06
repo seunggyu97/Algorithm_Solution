@@ -43,18 +43,20 @@ class Main {
                 sb.append('\n');
             }
 
-            System.out.println(sb);
+            System.out.print(sb);
             System.exit(0);
         }
 
         if(arr[row][col] == 0){
             // 해당 위치가 0이라면 가능성 검사 시작
-            for(int i = 0; i<9; i++){
+            for(int i = 1; i<=9; i++){
                 if(isPossible(row, col, i)){
                     arr[row][col] = i;
                     backTracking(row, col+1);
                 }
             }
+            arr[row][col] = 0;
+            return;
         }
 
         backTracking(row, col+1);
