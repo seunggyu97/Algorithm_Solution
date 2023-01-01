@@ -18,7 +18,8 @@ class Solution {
             }
         }
 
-        for(int i = 0; i < dq.size(); i++) {
+        int size = dq.size();
+        for(int i = 0; i < size; i++) {
             answer.append(dq.pollFirst());
         }
 
