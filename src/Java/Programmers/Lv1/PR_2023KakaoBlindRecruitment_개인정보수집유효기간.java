@@ -35,7 +35,11 @@ class Solution {
             if(PriDate.month > 12) {
                 int plus = PriDate.month / 12;
                 PriDate.month %= 12;
-                PriDate.year += plus;
+                if(PriDate.month == 0) {
+                    PriDate.month = 12;
+                    PriDate.year += plus - 1;
+                }
+                else PriDate.year += plus;
             }
 
             if(Today.year >= PriDate.year) {
@@ -72,9 +76,9 @@ class Solution {
         }
     }
     public static void main(String[] args) {
-        String today = "2022.05.19";
-        String[] terms = {"A 6", "B 12", "C 3"};
-        String[] privacies = {"2021.05.02 A", "2021.07.01 B", "2022.02.19 C", "2022.02.20 C"};
+        String today = "2022.02.28";
+        String[] terms = {"A 26"};
+        String[] privacies = {"2020.01.28 A"};
 
         Solution sol = new Solution();
         System.out.println(Arrays.toString(sol.solution(today, terms, privacies)));
